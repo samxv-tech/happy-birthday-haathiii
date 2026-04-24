@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Haathi 🐘</title>
+<style>
+body{margin:0;font-family:Arial;background:linear-gradient(to right,#2b2b2b 50%,#d3d3d3 50%);overflow:hidden}
+.slider{display:flex;width:100vw;height:100vh;overflow-x:scroll;scroll-snap-type:x mandatory;scroll-behavior:smooth}
+.page{flex:0 0 100vw;height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;text-align:center}
+.card{background:rgba(255,255,255,0.85);border-radius:16px;padding:18px;max-width:520px}
+.emoji{font-size:34px;margin-bottom:10px}
+p{font-size:15px;line-height:1.6}
+button{margin-top:12px;padding:10px 16px;border:none;border-radius:8px;background:#111;color:#fff}
+.next-btn{position:absolute;bottom:15px;right:15px}
+
+/* popup */
+.popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);background:white;padding:25px;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.4);z-index:10;text-align:center;transition:0.3s}
+.popup.active{transform:translate(-50%,-50%) scale(1)}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:9}
+
+/* blast effect */
+.blast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:40px;display:none;animation:blast 1s ease-out}
+@keyframes blast{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(5);opacity:0}
+}
+</style>
+</head>
+<body onload="birthdayBlast()">
+
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+  <h2>🎉 HAPPY BIRTHDAY BHAIYA 🐘</h2>
+  <p>You are the best brother ever 💞</p>
+  <button onclick="closePopup()">Close</button>
+</div>
+
+<div class="blast" id="blast">🎉🎊🐘💥</div>
+
+<div class="slider" id="slider">
+
+<div class="page"><div class="card"><div class="emoji">🐘💞</div>
+<p onclick="openPopup(this)">Karan… mera golu molu haathi… happiest birthday bhaiya…</p>
+</div><button class="next-btn" onclick="nextPage()">Next ➡️</button></div>
+
+<div class="page"><div class="card"><div class="emoji">🐘✨</div>
+<p onclick="openPopup(this)">Yaad hai? Ambuja cement group… meme fight… aur ek ajnabi mera bhai ban gaya…</p>
+</div><button class="next-btn" onclick="nextPage()">Next ➡️</button></div>
+
+<div class="page"><div class="card"><div class="emoji">🐘❤️</div>
+<p onclick="openPopup(this)">Tu bhai hai… lekin jaan se bhi pyaara…</p>
+</div><button class="next-btn" onclick="nextPage()">Next ➡️</button></div>
+
+<div class="page"><div class="card"><div class="emoji">🐘🌈</div>
+<p onclick="openPopup(this)">Teri jagah koi nahi le sakta… kabhi bhi nahi…</p>
+</div><button class="next-btn" onclick="nextPage()">Next ➡️</button></div>
+
+<div class="page"><div class="card"><div class="emoji">🐘🥺</div>
+<p onclick="openPopup(this)">Last wish… khana skip mat karna… apna khayal rakhna…</p>
+</div><button class="next-btn" onclick="nextPage()">Next ➡️</button></div>
+
+<div class="page"><div class="card"><div class="emoji">🐘👑</div>
+<h1 onclick="openPopup(this)">Best Brother Ever</h1>
+<p onclick="openPopup(this)">You are my strength, my smile, my everything 🐘💞</p>
+</div></div>
+
+</div>
+
+<script>
+const slider=document.getElementById('slider');let currentPage=0;
+function nextPage(){currentPage++;slider.scrollTo({left:currentPage*window.innerWidth,behavior:'smooth'})}
+
+function openPopup(el){
+  document.querySelector('#popup p').innerText=el.innerText;
+  document.getElementById('popup').classList.add('active');
+  document.getElementById('overlay').style.display='block';
+}
+
+function closePopup(){
+  document.getElementById('popup').classList.remove('active');
+  document.getElementById('overlay').style.display='none';
+}
+
+function birthdayBlast(){
+  let blast=document.getElementById('blast');
+  blast.style.display='block';
+  setTimeout(()=>{blast.style.display='none';},1000);
+  setTimeout(()=>{
+    document.getElementById('popup').classList.add('active');
+    document.getElementById('overlay').style.display='block';
+  },800);
+}
+</script>
+
+</body>
+</html>
